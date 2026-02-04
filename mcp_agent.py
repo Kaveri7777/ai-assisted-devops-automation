@@ -9,13 +9,20 @@ def analyze_failure(log_file):
 
     prompt = f"""
 You are an AI DevOps assistant.
-Analyze the Jenkins pipeline logs and explain:
-1. What failed
-2. Why it failed
-3. How to fix it
+
+IMPORTANT:
+- Focus ONLY on the LAST ERROR in the logs
+- Identify the FAILED STAGE
+- Ignore successful stages
+
+Answer:
+1. Which stage failed?
+2. Exact error message
+3. Root cause
+4. Fix
 
 Logs:
-{logs[:4000]}
+{logs[-4000:]}
 """
 
     payload = {
