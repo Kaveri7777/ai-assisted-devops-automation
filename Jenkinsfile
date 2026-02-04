@@ -35,7 +35,7 @@ pipeline {
         failure {
             echo 'Pipeline failed – invoking MCP AI Agent'
             bat '''
-            python mcp_agent.py jenkins.log
+            py mcp_agent.py jenkins.log
             '''
         }
     }
