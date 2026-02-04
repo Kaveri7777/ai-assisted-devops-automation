@@ -33,10 +33,16 @@ pipeline {
 
     post {
         failure {
-            echo 'Pipeline failed – invoking MCP AI Agent'
-            bat '''
-            "C:\\Users\\hskav\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" mcp_agent.py jenkins.log
-            '''
+            echo 'Pipeline failed – capturing logs and invoking MCP AI Agent'
+			script {
+				writeFile(
+					file: 'jenkins.log',
+					text: currentBuild.rawBuild.getLog(1000).join('\n')
+            )
+        }
+        bat '''
+        "C:\\Users\\hskav\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" mcp_agent.py jenkins.log
+        '''
         }
     }
 }
