@@ -35,7 +35,7 @@ pipeline {
         failure {
             echo 'Pipeline failed – invoking MCP AI Agent'
             bat '''
-            py mcp_agent.py jenkins.log
+            "C:\\Users\\hskav\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" mcp_agent.py jenkins.log
             '''
         }
     }
