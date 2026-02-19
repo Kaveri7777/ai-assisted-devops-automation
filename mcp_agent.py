@@ -2,7 +2,7 @@ import sys
 import requests
 import json
 
-OLLAMA_URL = "http://127.0.0.1:11434/api/generate"
+OLLAMA_URL = "http://localhost:11434/api/generate"
 
 def analyze_failure(log_file):
     with open(log_file, "r", errors="ignore") as f:
@@ -38,7 +38,7 @@ Logs:
     print("\n[DEVOPS AI AGENT OUTPUT]\n")
 
     try:
-        r = requests.post(OLLAMA_URL, json=payload, timeout=300)
+        r = requests.post(OLLAMA_URL, json=payload, timeout=600)
         r.raise_for_status()
         data = r.json()
     except Exception as e:
