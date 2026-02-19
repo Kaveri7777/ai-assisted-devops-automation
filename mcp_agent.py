@@ -2,7 +2,7 @@ import sys
 import requests
 import json
 
-OLLAMA_URL = "http://localhost:11434/api/generate"
+OLLAMA_URL = "http://127.0.0.1:11434/api/generate"
 
 def analyze_failure(log_file):
     with open(log_file, "r", errors="ignore") as f:
@@ -31,7 +31,7 @@ Logs:
     print("\n[DEVOPS AI AGENT OUTPUT]\n")
 
     try:
-        r = requests.post(OLLAMA_URL, json=payload, timeout=60)
+        r = requests.post(OLLAMA_URL, json=payload, timeout=180)
         data = r.json()
     except Exception as e:
         print("ERROR: Could not connect to Ollama.")
