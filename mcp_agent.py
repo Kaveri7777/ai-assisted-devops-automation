@@ -12,21 +12,25 @@ def analyze_failure(log_file):
     log_excerpt = "".join(lines[-200:])
 
     prompt = f"""
-You are an AI DevOps assistant.
-Focus ONLY on the last failure.
+You are a senior DevOps engineer.
 
-Answer clearly:
-1) Which stage failed?
-2) Exact error line
-3) Root cause
-4) Fix
+Analyze ONLY the failure from the last 200 lines.
+
+Strictly answer in this format:
+
+Stage Failed:
+Error Line:
+Root Cause:
+Fix:
+
+Be precise. Do not guess. Do not add extra explanation.
 
 Logs:
 {log_excerpt}
 """
 
     payload = {
-        "model": "phi3",        # 🔥 use phi3 (lighter than mistral)
+        "model": "phi3", 
         "prompt": prompt,
         "stream": False
     }
