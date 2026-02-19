@@ -22,6 +22,11 @@ pipeline {
                 bat 'docker build -t ai-devops-app .'
             }
         }
+        stage('Test Ollama Connection') {
+            steps {
+                bat 'curl http://127.0.0.1:11434/api/tags'
+            }
+        }
 
         stage('Run Container') {
             steps {
